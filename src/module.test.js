@@ -12,7 +12,6 @@ describe('calculateAge Unit test Suites', () => {
         };
         expect(calculateAge(loise)).toEqual(32);
     })
-
     //le format envoyé n'est pas un objet
     it('should throw a "missing param" error', () => {
         expect(() => calculateAge()).toThrow("missing param")
@@ -27,19 +26,16 @@ describe('calculateAge Unit test Suites', () => {
     it('should throw a "missing param birth date" error', () => {
         expect(() => calculateAge({birth: "test"})).toThrow("missing param birth date")
     })
-
     //la date envoyée est fausse
     it('should throw a "missing param birth date false" error', () => {
         expect(() => calculateAge({birth: new Date("21/07/1991")})).toThrow("missing param birth date false")
     })
-    
     //lancé le test l'année prochaine de façon dynamique 
     it('should return a correct age', () => {
         const currentDate = new Date();
         const newDate = currentDate.setFullYear(currentDate.getFullYear() - 20);
         expect(calculateAge({birth:new Date(newDate)})).toBe(20);
     })
-
     // l'age doit être supérieur à 18
     it('should return error age -18 ', () => {
         const currentDate = new Date();

@@ -64,7 +64,7 @@ test('should return true when fiel email is empty', () => {
 //test sur la Date de naissance
 test('should return true when fiel birthDate is empty', () => {
   fireEvent.change(screen.getByLabelText('Date de naissance'), { 
-    target: { birth: new Date('') } 
+    target: { value: null } 
   });
   const submitButton = screen.getByTestId('save');
   fireEvent.click(submitButton);
