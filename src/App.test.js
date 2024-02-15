@@ -35,7 +35,7 @@ test('should return false when field is empty', () => {
 
 //test sur la desactivation du bouton si un des champs n'est pas remplis
 //test sur le Prénom
-test('should return true when fiel firtsname is empty', () => {
+test('should return true when field firtsname is empty', () => {
   fireEvent.change(screen.getByLabelText('Prénom'), { 
     target: { value: '' } 
   });
@@ -44,7 +44,7 @@ test('should return true when fiel firtsname is empty', () => {
   expect(submitButton).toBeDisabled();
 });
 //test sur le Nom
-test('should return true when fiel lastname is empty', () => {
+test('should return true when field lastname is empty', () => {
   fireEvent.change(screen.getByLabelText('Nom'), { 
     target: { value: '' } 
   });
@@ -53,7 +53,7 @@ test('should return true when fiel lastname is empty', () => {
   expect(submitButton).toBeDisabled();
 });
 //test sur le Mail
-test('should return true when fiel email is empty', () => {
+test('should return true when field email is empty', () => {
   fireEvent.change(screen.getByLabelText('Email'), { 
     target: { value: '' } 
   });
@@ -62,7 +62,7 @@ test('should return true when fiel email is empty', () => {
   expect(submitButton).toBeDisabled();
 });
 //test sur la Date de naissance
-test('should return true when fiel birthDate is empty', () => {
+test('should return true when field birthDate is empty', () => {
   fireEvent.change(screen.getByLabelText('Date de naissance'), { 
     target: { value: null } 
   });
@@ -71,7 +71,7 @@ test('should return true when fiel birthDate is empty', () => {
   expect(submitButton).toBeDisabled();
 });
 //test sur la Ville
-test('should return true when fiel city is empty', () => {
+test('should return true when field city is empty', () => {
   fireEvent.change(screen.getByLabelText('Ville'), { 
     target: { value: '' } 
   });
@@ -80,7 +80,7 @@ test('should return true when fiel city is empty', () => {
   expect(submitButton).toBeDisabled();
 });
 //test sur le Code postal
-test('should return true when fiel postalCode is empty', () => {
+test('should return true when field postalCode is empty', () => {
   fireEvent.change(screen.getByLabelText('Code postal'), { 
     target: { value: '' } 
   });
