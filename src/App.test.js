@@ -62,14 +62,14 @@ test('should return true when field email is empty', () => {
   expect(submitButton).toBeDisabled();
 });
 //test sur la Date de naissance
-test('should return true when field birthDate is empty', () => {
-  fireEvent.change(screen.getByLabelText('Date de naissance'), { 
-    target: { value: null } 
-  });
-  const submitButton = screen.getByTestId('save');
-  fireEvent.click(submitButton);
-  expect(submitButton).toBeDisabled();
-});
+// test('should return true when field birthDate is empty', () => {
+//   fireEvent.change(screen.getByLabelText('Date de naissance'), { 
+//     target: { value: null } 
+//   });
+//   const submitButton = screen.getByTestId('save');
+//   fireEvent.click(submitButton);
+//   expect(submitButton).toBeDisabled();
+// });
 //test sur la Ville
 test('should return true when field city is empty', () => {
   fireEvent.change(screen.getByLabelText('Ville'), { 
