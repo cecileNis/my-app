@@ -43,6 +43,9 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Stepup Jsdoc
+        run: |
+          npm run jsdoc
   #Deploy job
   deploy:
     #Deploy to the github-pages environment
