@@ -25,6 +25,9 @@ jobs:
         uses: actions/setup-node@v2
         with: 
           node-versions: ${{ matrix.node-version }}
+      - name: Stepup Jsdoc
+        run: |
+          npm run jsdoc
       - name: npm ci, build and test
         run: |
           npm ci
@@ -43,9 +46,6 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Stepup Jsdoc
-        run: |
-          npm run jsdoc
   #Deploy job
   deploy:
     #Deploy to the github-pages environment
