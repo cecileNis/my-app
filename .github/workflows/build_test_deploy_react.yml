@@ -59,6 +59,11 @@ jobs:
     needs: build_test
     #Specify runner + deployement step
     steps:
+      - name: Versoning build
+        run: |
+          npm view version
+          npm git tag v0.1.0-${{github.run_id}}-${{github.run_number}}-${{github.run_attempt}}-a -m "buil version ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}"
+          npm version from-git
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v2
