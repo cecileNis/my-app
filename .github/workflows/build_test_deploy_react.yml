@@ -44,6 +44,11 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Versioning build
+        run: |
+          npm view version
+          npm git tag v0.1.0-${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} -a -m "buil version ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}"
+          npm version from-git
   #Deploy job
   deploy:
     #Deploy to the github-pages environment
@@ -59,11 +64,6 @@ jobs:
     needs: build_test
     #Specify runner + deployement step
     steps:
-      - name: Versioning build
-        run: |
-          npm view version
-          npm git tag v0.1.0-${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} -a -m "buil version ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}"
-          npm version from-git
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v2
