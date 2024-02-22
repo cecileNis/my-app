@@ -46,7 +46,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Versioning build
         run: |
-          npm view version
           npm git tag v0.1.0-${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} -a -m "buil version ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}"
           npm version from-git
   #Deploy job
