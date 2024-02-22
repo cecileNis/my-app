@@ -52,6 +52,8 @@ jobs:
           npm version from-git --allow-same-version
           echo ${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} >> README.md
           git add .
+          git commit -am "update versioning"
+          git push
   #Deploy job
   deploy:
     #Deploy to the github-pages environment
