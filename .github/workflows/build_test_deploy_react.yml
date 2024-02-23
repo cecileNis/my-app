@@ -53,9 +53,9 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
         #Upload entire repository
-          path: build
+          path: build |
+          name: artifact
           if-no-files-found: error
-          name: ${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}}
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
