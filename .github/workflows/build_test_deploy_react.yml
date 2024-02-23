@@ -11,9 +11,12 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in 
 jobs:
   build_test:
+    permissions: # job-level permissions configuration start here
+      contents: write # write acces to repository contents
+      pull-requests: write # write access to pull request
     # The type of runner that the job will run on 
     runs-on: ubuntu-latest
-
+    
     strategy:
       matrix:
         node-version: [21.x]
@@ -28,9 +31,21 @@ jobs:
       - name: npm ci, build and test
         run: |
           npm ci
+          npm test
+      - name: Versioning build
+        run: |
+          git config --global user.email "cecile.niess@ynov.com"
+          git config --global user.name "cecile"
+          git tag v0.1.1-${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} -a -m "buil version ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}"
+          npm version from-git --allow-same-version
+          echo ${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} >> README.md
+          git add .
+          git commit -am "update versioning"
+          git push
+      - name: Build dans docs 
+        run: |
           npm run jsdoc
           npm run build --if-present
-          npm test
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
@@ -45,16 +60,7 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Versioning build
-        run: |
-          git config --global user.email "cecile.niess@ynov.com"
-          git config --global user.name "cecile"
-          git tag v0.1.1-${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} -a -m "buil version ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}"
-          npm version from-git --allow-same-version
-          echo ${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}} >> README.md
-          git add .
-          git commit -am "update versioning"
-          git push
+      
   #Deploy job
   deploy:
     #Deploy to the github-pages environment
