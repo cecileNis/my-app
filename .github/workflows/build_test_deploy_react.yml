@@ -40,6 +40,7 @@ jobs:
         #Upload entire repository
           path: build
           if-no-files-found: error
+          name: ${{github.run_id}}.${{github.run_number}}.${{github.run_attempt}}
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
